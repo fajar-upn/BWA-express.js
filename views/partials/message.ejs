@@ -1,0 +1,6 @@
+<!-- alert from AdminController.ejs and method viewCategory -->
+<% if(alert.message !="" ){%>
+    <div class="alert alert-<%= alert.status %> col-lg-8" role="alert">
+        <%= alert.message %>
+    </div>
+    <% } %>

@@ -1,0 +1,76 @@
+<!-- Header -->
+<%- include('../../partials/header.ejs') %>
+    <!-- End of Header -->
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <%- include('../../partials/sidebar.ejs') %>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <%- include('../../partials/navbar.ejs') %>
+                        <!-- End of Topbar -->
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                            <!-- flash message -->
+                            <%- include('../../partials/message') %>
+                                <!-- end of flash message -->
+
+                                <!-- Page Heading -->
+                                <h1 class="h3 mb-4 text-gray-800">Category</h1>
+                                <!-- End Heading -->
+
+                                <!-- start of table content -->
+                                <%- include('table_category.ejs') %>
+                                    <!-- end of table content -->
+                        </div>
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <%- include('../../partials/footer.ejs') %>
+                    <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+    <!-- library javascript modal -->
+    <%- include('add_modal.ejs') %>
+        <%- include('edit_modal.ejs') %>
+            <!-- javascript library -->
+            <%- include('../../partials/js.ejs') %>
+
+                <!-- edit data with modal -->
+                <!-- find id dataTable and find class button-update -->
+                <!-- after click find id edit modal in edit_modal.ejs -->
+                <script>
+                    $('#dataTable').on('click', '.button-update', function () {
+                        let id = $(this).data('id')
+                        let name = $(this).data('name')
+                        $('#edit-modal').modal('show')
+                        $('.id').val(id)
+                        $('.name').val(name)
+                    })
+                </script>
+
+                <!-- Logout Modal-->
+                <%- include('../../partials/logout_modal.ejs') %>
+                    <!-- end of modal -->

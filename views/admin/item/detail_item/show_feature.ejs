@@ -1,0 +1,81 @@
+<!-- navigation tab in view_item.ejs -->
+<div class="tab-pane fade show active" id="show-feature" role="tabpanel" aria-labelledby="home-tab">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <form action="/admin/item/add/feature" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Quantity</label>
+                            <input type="number" class="form-control" name="qty" id="qty" placeholder="Enter quantity"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl">Insert Image</label>
+                            <input type="file" class="form-control" name="imageUrl" id="imageUrl" required>
+                        </div>
+                        <input type="hidden" value="<%= itemId %>" name="itemId" id="itemId">
+                        <button type="text" class="btn btn-primary">Add feature</button>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="data-table-feature" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Image Url</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i<feature.length; i++){ %>
+                                    <tr>
+                                        <td>
+                                            <%= i+1 %>
+                                        </td>
+                                        <td>
+                                            <%= feature[i].name %>
+                                        </td>
+                                        <td>
+                                            <%= feature[i].qty %>
+                                        </td>
+                                        <td>
+                                            <!-- https://localhost:3000/ -->
+                                            <img src="http://saber-staycation.herokuapp.com<%= feature[i].imageUrl %>"
+                                                alt="imageUrl" height="70px">
+                                        </td>
+                                        <td>
+                                            <!-- require install methodeOverride and set up in app js -->
+                                            <!-- data-'<name>' cannot accept capital  -->
+                                            <form
+                                                action="/admin/item/<%= itemId %>/feature/<%= feature[i].id %>?_method=DELETE"
+                                                method="POST">
+                                                <a href="javascript:void(0)" type="button"
+                                                    class="btn btn-warning btn-circle btn-sm button-update"
+                                                    data-id="<%= feature[i].id %>" data-name="<%= feature[i].name %>"
+                                                    data-qty="<%= feature[i].qty %>">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <!-- delete button -->
+                                                <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
